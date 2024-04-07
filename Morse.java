@@ -175,17 +175,13 @@ public class Morse {
             String compressedText = extractTextFromHtml(filename);
             StringBuilder sb = new StringBuilder();
     
-            // Split the compressed text by Morse code space (three spaces)
-            String[] codes = compressedText.split("   "); // Three spaces for Morse code space
+            String[] codes = compressedText.trim().split(" {2,}");
             
             for (String code : codes) {
-                // Split Morse code characters by single space
-                String[] characters = code.split(" ");
+                String[] characters = code.trim().split(" ");
                 
                 for (String character : characters) {
-                    // Decode Morse code character
                     if (character.equals("")) {
-                        // If it's an empty character, it represents a space
                         sb.append(' ');
                     } else {
                         Character decodedCharacter = reverseMorseCodeMap.get(character);
